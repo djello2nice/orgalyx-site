@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orgalyx Analytics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background: #f8fafc;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+    header {
+      background: #0f172a;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    nav a:hover {
+      color: #22d3ee;
+    }
+    .hero {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(to right, #0ea5e9, #38bdf8);
+      color: white;
+    }
+    .hero h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+    }
+    .hero p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .feature-card {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+    .feature-card h3 {
+      margin-top: 1rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .feature-card p {
+      margin-top: 0.5rem;
+      color: #475569;
+    }
+    .feature-icon {
+      font-size: 2rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      background: #0f172a;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#blog">Blog</a>
+      <a href="#support">Support</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>From Polling to KPIs – Data That Drives Decisions</h1>
+    <p>We help businesses and campaigns gather insights, segment audiences, and take action through visual analytics and polling tools.</p>
+  </section>
+
+  <section class="section" id="features">
+    <h2>Features for Smarter Decisions</h2>
+    <p style="text-align:center; max-width: 720px; margin: 0 auto; color: #64748b;">Discover tools to collect, analyze, and visualize data—built for campaigns and brands that lead with insight.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h3>Online surveys & questionnaires</h3>
+        <p>Create, send, and analyze surveys with mobile-first design and custom logic. Perfect for campaign testing and product feedback.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📨</div>
+        <h3>SMS & email polling</h3>
+        <p>Collect rapid feedback with personalized, multilingual polls. Integrate seamlessly for instant sentiment tracking.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Social media listening</h3>
+        <p>Track mentions, trends, and sentiment in real time. Visualize brand and campaign performance instantly.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎤</div>
+        <h3>Focus groups & interviews</h3>
+        <p>Get in-depth feedback with moderated sessions—virtual or in-person. Receive clear summaries and video highlights.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <h3>Data segmentation</h3>
+        <p>Break down your audience by behaviors, interests, and responses to tailor your messaging and offers.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <h3>KPI dashboards</h3>
+        <p>Visualize performance with clean, interactive dashboards built in Power BI and designed for decision makers.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="clients">
+    <h2>Trusted by Forward-Thinking Brands</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin: 2rem 0;">
+      <img src="https://via.placeholder.com/120x40?text=Bloomberg" alt="Bloomberg" style="height: 40px;" />
+      <img src="https://via.placeholder.com/120x40?text=NYC+Gov" alt="NYC Gov" style="height: 40px;" />
+      <img src="https://via.placeholder.com/120x40?text=DNC" alt="DNC" style="height: 40px;" />
+      <img src="https://via.placeholder.com/120x40?text=UNICEF" alt="UNICEF" style="height: 40px;" />
+    </div>
+  </section>
+
+  <section class="section" id="dashboards">
+    <h2>Dashboard Gallery</h2>
+    <p style="text-align:center; max-width: 720px; margin: 0 auto; color: #64748b;">We create fully customized and interactive dashboards with your data.</p>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 2rem;">
+      <img src="/mnt/data/69a9cfd2-fd3f-4860-884e-cd8018fcb547.png" alt="Orgalyx Dashboard Example" style="border-radius: 0.75rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); max-width: 100%;" />
+      
+      
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Orgalyx Analytics. All rights reserved.
+  </footer>
+</body>
+</html>
