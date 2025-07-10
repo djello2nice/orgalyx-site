@@ -12,171 +12,718 @@
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
     }
+    
     body {
       background: #f8fafc;
       color: #1e293b;
       line-height: 1.6;
+      overflow-x: hidden;
     }
+    
+    /* Navigation */
     header {
-      background: #0f172a;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
       padding: 1rem 2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
     }
+    
     nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #22d3ee;
+      text-decoration: none;
+    }
+    
+    .nav-links {
       display: flex;
       gap: 2rem;
     }
-    nav a {
+    
+    .nav-links a {
       color: #fff;
       text-decoration: none;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1rem;
+      position: relative;
+      transition: all 0.3s ease;
     }
-    nav a:hover {
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #22d3ee;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+    
+    .nav-links a:hover {
       color: #22d3ee;
+      transform: translateY(-2px);
     }
+    
+    /* Hero Section */
     .hero {
-      padding: 4rem 2rem;
+      padding: 8rem 2rem 4rem;
       text-align: center;
-      background: linear-gradient(to right, #0ea5e9, #38bdf8);
+      background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 50%, #22d3ee 100%);
       color: white;
+      position: relative;
+      overflow: hidden;
     }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="80" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+      animation: float 20s infinite linear;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-20px) rotate(360deg); }
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
     .hero h1 {
-      font-size: 2.75rem;
+      font-size: 3.5rem;
       font-weight: 800;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.5s forwards;
     }
+    
     .hero p {
-      margin-top: 1rem;
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.7s forwards;
     }
+    
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.9s forwards;
+    }
+    
+    .cta-button:hover {
+      background: white;
+      color: #0ea5e9;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Sections */
     .section {
-      padding: 3rem 2rem;
+      padding: 4rem 2rem;
       max-width: 1200px;
       margin: auto;
     }
+    
     .section h2 {
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin-bottom: 1rem;
       text-align: center;
+      background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
+    
+    .section-subtitle {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 3rem;
+      color: #64748b;
+      font-size: 1.1rem;
+    }
+    
+    /* Features Grid */
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
-      margin-top: 2rem;
+      margin-top: 3rem;
     }
+    
     .feature-card {
       background: #ffffff;
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 2.5rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(14, 165, 233, 0.1);
+      position: relative;
+      overflow: hidden;
     }
+    
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #0ea5e9, #22d3ee);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+    }
+    
     .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(14, 165, 233, 0.15);
     }
-    .feature-card h3 {
-      margin-top: 1rem;
-      font-size: 1.25rem;
-      font-weight: 700;
+    
+    .feature-card:hover::before {
+      transform: translateX(0);
     }
-    .feature-card p {
-      margin-top: 0.5rem;
-      color: #475569;
-    }
+    
     .feature-icon {
-      font-size: 2rem;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+      animation: bounce 2s infinite;
     }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+    
+    .feature-card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #1e293b;
+    }
+    
+    .feature-card p {
+      color: #475569;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    
+    /* Clients Section */
+    .clients-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      margin: 3rem 0;
+    }
+    
+    .client-logo {
+      height: 50px;
+      opacity: 0.6;
+      filter: grayscale(1);
+      transition: all 0.3s ease;
+    }
+    
+    .client-logo:hover {
+      opacity: 1;
+      filter: grayscale(0);
+      transform: scale(1.1);
+    }
+    
+    /* Dashboard Gallery */
+    .dashboard-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .dashboard-item {
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      background: white;
+    }
+    
+    .dashboard-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .dashboard-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    
+    .dashboard-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    .dashboard-info {
+      padding: 1.5rem;
+    }
+    
+    .dashboard-info h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #1e293b;
+    }
+    
+    .dashboard-info p {
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    
+    /* Footer */
     footer {
       text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
+      padding: 3rem 2rem;
       background: #0f172a;
       color: #94a3b8;
+      margin-top: 4rem;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: #22d3ee;
+    }
+    
+    /* Page Content (Hidden by default) */
+    .page-content {
+      display: none;
+      padding: 6rem 2rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .page-content.active {
+      display: block;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .clients-grid {
+        gap: 1.5rem;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+    
+    /* Scroll animations */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+    
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
   <header>
     <nav>
-      <a href="#services">Services</a>
-      <a href="#about">About</a>
-      <a href="#blog">Blog</a>
-      <a href="#support">Support</a>
+      <a href="#" class="logo" onclick="showPage('home')">Orgalyx</a>
+      <div class="nav-links">
+        <a href="#" onclick="showPage('services')" class="nav-link">Services</a>
+        <a href="#" onclick="showPage('about')" class="nav-link">About</a>
+        <a href="#" onclick="showPage('blog')" class="nav-link">Blog</a>
+        <a href="#" onclick="showPage('support')" class="nav-link">Support</a>
+      </div>
     </nav>
   </header>
 
-  <section class="hero">
-    <h1>From Polling to KPIs – Data That Drives Decisions</h1>
-    <p>We help businesses and campaigns gather insights, segment audiences, and take action through visual analytics and polling tools.</p>
-  </section>
+  <!-- Home Page -->
+  <div id="home" class="page-content active">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>From Polling to KPIs – Data That Drives Decisions</h1>
+        <p>We help businesses and campaigns gather insights, segment audiences, and take action through visual analytics and polling tools.</p>
+        <a href="#" class="cta-button" onclick="showPage('services')">Explore Our Services</a>
+      </div>
+    </section>
 
-  <section class="section" id="features">
-    <h2>Features for Smarter Decisions</h2>
-    <p style="text-align:center; max-width: 720px; margin: 0 auto; color: #64748b;">Discover tools to collect, analyze, and visualize data—built for campaigns and brands that lead with insight.</p>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">💬</div>
-        <h3>Online surveys & questionnaires</h3>
-        <p>Create, send, and analyze surveys with mobile-first design and custom logic. Perfect for campaign testing and product feedback.</p>
+    <section class="section animate-on-scroll">
+      <h2>Features for Smarter Decisions</h2>
+      <p class="section-subtitle">Discover tools to collect, analyze, and visualize data—built for campaigns and brands that lead with insight.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">💬</span>
+          <h3>Online surveys & questionnaires</h3>
+          <p>Create, send, and analyze surveys with mobile-first design and custom logic. Perfect for campaign testing and product feedback.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📨</span>
+          <h3>SMS & email polling</h3>
+          <p>Collect rapid feedback with personalized, multilingual polls. Integrate seamlessly for instant sentiment tracking.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📊</span>
+          <h3>Social media listening</h3>
+          <p>Track mentions, trends, and sentiment in real time. Visualize brand and campaign performance instantly.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎤</span>
+          <h3>Focus groups & interviews</h3>
+          <p>Get in-depth feedback with moderated sessions—virtual or in-person. Receive clear summaries and video highlights.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🧠</span>
+          <h3>Data segmentation</h3>
+          <p>Break down your audience by behaviors, interests, and responses to tailor your messaging and offers.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📈</span>
+          <h3>KPI dashboards</h3>
+          <p>Visualize performance with clean, interactive dashboards built in Power BI and designed for decision makers.</p>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">📨</div>
-        <h3>SMS & email polling</h3>
-        <p>Collect rapid feedback with personalized, multilingual polls. Integrate seamlessly for instant sentiment tracking.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <h3>Social media listening</h3>
-        <p>Track mentions, trends, and sentiment in real time. Visualize brand and campaign performance instantly.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎤</div>
-        <h3>Focus groups & interviews</h3>
-        <p>Get in-depth feedback with moderated sessions—virtual or in-person. Receive clear summaries and video highlights.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🧠</div>
-        <h3>Data segmentation</h3>
-        <p>Break down your audience by behaviors, interests, and responses to tailor your messaging and offers.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📈</div>
-        <h3>KPI dashboards</h3>
-        <p>Visualize performance with clean, interactive dashboards built in Power BI and designed for decision makers.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="clients">
-    <h2>Trusted by Forward-Thinking Brands</h2>
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin: 2rem 0;">
-      <img src="https://via.placeholder.com/120x40?text=Bloomberg" alt="Bloomberg" style="height: 40px;" />
-      <img src="https://via.placeholder.com/120x40?text=NYC+Gov" alt="NYC Gov" style="height: 40px;" />
-      <img src="https://via.placeholder.com/120x40?text=DNC" alt="DNC" style="height: 40px;" />
-      <img src="https://via.placeholder.com/120x40?text=UNICEF" alt="UNICEF" style="height: 40px;" />
-    </div>
-  </section>
+    <section class="section animate-on-scroll">
+      <h2>Trusted by Forward-Thinking Brands</h2>
+      <div class="clients-grid">
+        <img src="https://via.placeholder.com/150x60/0ea5e9/ffffff?text=Bloomberg" alt="Bloomberg" class="client-logo" />
+        <img src="https://via.placeholder.com/150x60/0ea5e9/ffffff?text=NYC+Gov" alt="NYC Gov" class="client-logo" />
+        <img src="https://via.placeholder.com/150x60/0ea5e9/ffffff?text=DNC" alt="DNC" class="client-logo" />
+        <img src="https://via.placeholder.com/150x60/0ea5e9/ffffff?text=UNICEF" alt="UNICEF" class="client-logo" />
+      </div>
+    </section>
 
-  <section class="section" id="dashboards">
-    <h2>Dashboard Gallery</h2>
-    <p style="text-align:center; max-width: 720px; margin: 0 auto; color: #64748b;">We create fully customized and interactive dashboards with your data.</p>
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 2rem;">
-      <img src="/mnt/data/69a9cfd2-fd3f-4860-884e-cd8018fcb547.png" alt="Orgalyx Dashboard Example" style="border-radius: 0.75rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); max-width: 100%;" />
+    <section class="section animate-on-scroll">
+      <h2>Dashboard Gallery</h2>
+      <p class="section-subtitle">We create fully customized and interactive dashboards with your data.</p>
+      <div class="dashboard-gallery">
+        <div class="dashboard-item">
+          <img src="https://via.placeholder.com/400x200/0ea5e9/ffffff?text=Campaign+Analytics" alt="Campaign Analytics Dashboard" />
+          <div class="dashboard-info">
+            <h3>Campaign Analytics</h3>
+            <p>Real-time campaign performance tracking with engagement metrics and sentiment analysis.</p>
+          </div>
+        </div>
+        <div class="dashboard-item">
+          <img src="https://via.placeholder.com/400x200/22d3ee/ffffff?text=Survey+Results" alt="Survey Results Dashboard" />
+          <div class="dashboard-info">
+            <h3>Survey Results</h3>
+            <p>Interactive survey data visualization with demographic breakdowns and trend analysis.</p>
+          </div>
+        </div>
+        <div class="dashboard-item">
+          <img src="https://via.placeholder.com/400x200/38bdf8/ffffff?text=Social+Listening" alt="Social Listening Dashboard" />
+          <div class="dashboard-info">
+            <h3>Social Listening</h3>
+            <p>Comprehensive social media monitoring with sentiment tracking and influencer identification.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Services Page -->
+  <div id="services" class="page-content">
+    <section class="section">
+      <h2>Our Services</h2>
+      <p class="section-subtitle">Comprehensive analytics solutions tailored to your needs</p>
       
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">🎯</span>
+          <h3>Campaign Analytics</h3>
+          <p>Track campaign performance across all channels with real-time insights and predictive modeling. Get actionable recommendations to optimize your strategy.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🔍</span>
+          <h3>Market Research</h3>
+          <p>Comprehensive market analysis including competitor tracking, consumer behavior studies, and trend forecasting to keep you ahead of the curve.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📱</span>
+          <h3>Digital Polling</h3>
+          <p>Advanced polling solutions with AI-powered analysis, demographic targeting, and real-time results visualization for informed decision making.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎨</span>
+          <h3>Custom Dashboards</h3>
+          <p>Bespoke dashboard creation with your brand colors, metrics, and KPIs. Interactive visualizations that make complex data simple to understand.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">⚡</span>
+          <h3>Real-time Analytics</h3>
+          <p>Live data streaming and analysis with instant alerts for significant changes. Never miss a critical moment in your campaigns.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🤝</span>
+          <h3>Consulting Services</h3>
+          <p>Expert consultation on data strategy, analytics implementation, and performance optimization with our team of data scientists.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- About Page -->
+  <div id="about" class="page-content">
+    <section class="section">
+      <h2>About Orgalyx Analytics</h2>
+      <p class="section-subtitle">Empowering decisions through intelligent data analysis</p>
       
-    </div>
-  </section>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; margin-top: 3rem;">
+        <div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #0ea5e9;">Our Mission</h3>
+          <p style="color: #64748b; line-height: 1.8;">We believe that every organization deserves access to powerful analytics tools that transform raw data into actionable insights. Our mission is to democratize data analytics and make it accessible to businesses of all sizes.</p>
+        </div>
+        <div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #0ea5e9;">Our Story</h3>
+          <p style="color: #64748b; line-height: 1.8;">Founded in 2020, Orgalyx Analytics emerged from the need for better data visualization in political campaigns. We've since expanded to serve enterprises, non-profits, and government organizations worldwide.</p>
+        </div>
+        <div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #0ea5e9;">Our Values</h3>
+          <p style="color: #64748b; line-height: 1.8;">Transparency, accuracy, and innovation drive everything we do. We're committed to providing unbiased insights that help our clients make informed decisions with confidence.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Blog Page -->
+  <div id="blog" class="page-content">
+    <section class="section">
+      <h2>Latest Insights</h2>
+      <p class="section-subtitle">Stay updated with the latest trends in data analytics and polling</p>
+      
+      <div class="dashboard-gallery">
+        <div class="dashboard-item">
+          <img src="https://via.placeholder.com/400x200/0ea5e9/ffffff?text=Data+Trends+2025" alt="Data Trends 2025" />
+          <div class="dashboard-info">
+            <h3>Data Analytics Trends for 2025</h3>
+            <p>Explore the emerging trends in data analytics and how they'll shape business decisions in the coming year.</p>
+          </div>
+        </div>
+        <div class="dashboard-item">
+          <img src="https://via.placeholder.com/400x200/22d3ee/ffffff?text=Polling+Best+Practices" alt="Polling Best Practices" />
+          <div class="dashboard-info">
+            <h3>Best Practices for Digital Polling</h3>
+            <p>Learn how to design effective polls that generate meaningful insights and drive better decision-making.</p>
+          </div>
+        </div>
+        <div class="dashboard-item">
+          <img src="https://via.placeholder.com/400x200/38bdf8/ffffff?text=Dashboard+Design" alt="Dashboard Design" />
+          <div class="dashboard-info">
+            <h3>Dashboard Design Principles</h3>
+            <p>Discover the key principles for creating dashboards that are both beautiful and functional.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Support Page -->
+  <div id="support" class="page-content">
+    <section class="section">
+      <h2>Support Center</h2>
+      <p class="section-subtitle">Get help when you need it most</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">📞</span>
+          <h3>24/7 Support</h3>
+          <p>Our support team is available around the clock to help with any questions or technical issues you may encounter.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📚</span>
+          <h3>Documentation</h3>
+          <p>Comprehensive guides and tutorials to help you get the most out of our platform and analytics tools.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎓</span>
+          <h3>Training</h3>
+          <p>Personalized training sessions and workshops to help your team master data analytics and visualization.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">💬</span>
+          <h3>Community</h3>
+          <p>Join our community of data professionals to share insights, ask questions, and learn from others.</p>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 3rem;">
+        <h3 style="margin-bottom: 1rem; color: #0ea5e9;">Contact Us</h3>
+        <p style="color: #64748b; margin-bottom: 1rem;">Email: support@orgalyx.com</p>
+        <p style="color: #64748b; margin-bottom: 1rem;">Phone: +1 (555) 123-4567</p>
+        <p style="color: #64748b;">Live Chat: Available 24/7 on our platform</p>
+      </div>
+    </section>
+  </div>
 
   <footer>
-    &copy; 2025 Orgalyx Analytics. All rights reserved.
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="#" onclick="showPage('services')">Services</a>
+        <a href="#" onclick="showPage('about')">About</a>
+        <a href="#" onclick="showPage('blog')">Blog</a>
+        <a href="#" onclick="showPage('support')">Support</a>
+      </div>
+      <p>&copy; 2025 Orgalyx Analytics. All rights reserved.</p>
+    </div>
   </footer>
+
+  <script>
+    // Page navigation
+    function showPage(pageId) {
+      // Hide all pages
+      document.querySelectorAll('.page-content').forEach(page => {
+        page.classList.remove('active');
+      });
+      
+      // Show selected page
+      document.getElementById(pageId).classList.add('active');
+      
+      // Update nav links
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+      });
+      
+      // Scroll to top
+      window.scrollTo(0, 0);
+    }
+    
+    // Scroll animations
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('visible');
+        }
+      });
+    }
+    
+    // Header scroll effect
+    function handleScroll() {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(15, 23, 42, 0.98)';
+      } else {
+        header.style.background = 'rgba(15, 23, 42, 0.95)';
+      }
+    }
+    
+    // Event listeners
+    window.addEventListener('scroll', () => {
+      animateOnScroll();
+      handleScroll();
+    });
+    
+    // Initial animation check
+    window.addEventListener('load', () => {
+      animateOnScroll();
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
