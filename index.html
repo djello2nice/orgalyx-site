@@ -372,7 +372,333 @@
       display: block;
     }
     
-    /* Responsive Design */
+    
+    .login-btn {
+      background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      color: white !important;
+    }
+    
+    .login-btn:hover {
+      background: linear-gradient(135deg, #0284c7, #06b6d4);
+      transform: translateY(-2px);
+    }
+    
+    .login-btn::after {
+      display: none;
+    }
+    
+    /* Auth Forms */
+    .auth-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 50%, #22d3ee 100%);
+      padding: 2rem;
+    }
+    
+    .auth-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 2rem;
+      padding: 3rem;
+      width: 100%;
+      max-width: 450px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      animation: slideIn 0.8s ease;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .auth-card h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #1e293b;
+      font-size: 2rem;
+      background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #374151;
+      font-weight: 600;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: white;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: #0ea5e9;
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+    }
+    
+    .auth-button {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+      color: white;
+      border: none;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 1rem;
+    }
+    
+    .auth-button:hover {
+      background: linear-gradient(135deg, #0284c7, #06b6d4);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(14, 165, 233, 0.3);
+    }
+    
+    .auth-switch {
+      text-align: center;
+      color: #6b7280;
+    }
+    
+    .auth-switch a {
+      color: #0ea5e9;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .auth-switch a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Dashboard Styles */
+    .dashboard-container {
+      padding: 6rem 2rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid #e5e7eb;
+    }
+    
+    .dashboard-welcome h1 {
+      font-size: 2.5rem;
+      color: #1e293b;
+      margin-bottom: 0.5rem;
+    }
+    
+    .dashboard-welcome p {
+      color: #64748b;
+      font-size: 1.1rem;
+    }
+    
+    .dashboard-user-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .user-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    
+    .user-details h3 {
+      color: #1e293b;
+      margin-bottom: 0.25rem;
+    }
+    
+    .user-details p {
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    
+    .logout-btn {
+      background: #ef4444;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .logout-btn:hover {
+      background: #dc2626;
+      transform: translateY(-2px);
+    }
+    
+    .dashboard-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .stat-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e5e7eb;
+      transition: all 0.3s ease;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .stat-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    
+    .dashboard-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    
+    .dashboard-panel {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e5e7eb;
+    }
+    
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .panel-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    
+    .panel-action {
+      background: #f8fafc;
+      color: #0ea5e9;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .panel-action:hover {
+      background: #0ea5e9;
+      color: white;
+    }
+    
+    .dashboard-iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+      border-radius: 0.5rem;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      font-size: 1.1rem;
+    }
+    
+    .recent-activity {
+      list-style: none;
+    }
+    
+    .recent-activity li {
+      padding: 1rem 0;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .recent-activity li:last-child {
+      border-bottom: none;
+    }
+    
+    .activity-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1rem;
+    }
+    
+    .activity-content h4 {
+      color: #1e293b;
+      margin-bottom: 0.25rem;
+    }
+    
+    .activity-content p {
+      color: #64748b;
+      font-size: 0.9rem;
+    }
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -422,6 +748,7 @@
         <a href="#" onclick="showPage('about')" class="nav-link">About</a>
         <a href="#" onclick="showPage('blog')" class="nav-link">Blog</a>
         <a href="#" onclick="showPage('support')" class="nav-link">Support</a>
+        <a href="#" onclick="showPage('login')" class="nav-link login-btn">Client Login</a>
       </div>
     </nav>
   </header>
@@ -608,7 +935,155 @@
     </section>
   </div>
 
-  <!-- Support Page -->
+  <!-- Login Page -->
+  <div id="login" class="page-content">
+    <div class="auth-container">
+      <div class="auth-card">
+        <h2>Welcome Back</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" name="password" required>
+          </div>
+          <button type="submit" class="auth-button">Sign In</button>
+        </form>
+        <div class="auth-switch">
+          <p>Don't have an account? <a href="#" onclick="showPage('signup')">Sign up here</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Signup Page -->
+  <div id="signup" class="page-content">
+    <div class="auth-container">
+      <div class="auth-card">
+        <h2>Create Account</h2>
+        <form id="signupForm">
+          <div class="form-group">
+            <label for="signupName">Full Name</label>
+            <input type="text" id="signupName" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="signupEmail">Email Address</label>
+            <input type="email" id="signupEmail" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="signupCompany">Company</label>
+            <input type="text" id="signupCompany" name="company" required>
+          </div>
+          <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <input type="password" id="signupPassword" name="password" required>
+          </div>
+          <button type="submit" class="auth-button">Create Account</button>
+        </form>
+        <div class="auth-switch">
+          <p>Already have an account? <a href="#" onclick="showPage('login')">Sign in here</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard Page -->
+  <div id="dashboard" class="page-content">
+    <div class="dashboard-container">
+      <div class="dashboard-header">
+        <div class="dashboard-welcome">
+          <h1>Welcome back, <span id="userNameDisplay">John</span>!</h1>
+          <p>Here's your analytics overview for today</p>
+        </div>
+        <div class="dashboard-user-info">
+          <div class="user-avatar" id="userAvatar">J</div>
+          <div class="user-details">
+            <h3 id="userFullName">John Doe</h3>
+            <p id="userCompany">Acme Corporation</p>
+          </div>
+          <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+      </div>
+
+      <div class="dashboard-stats">
+        <div class="stat-card">
+          <div class="stat-icon">📊</div>
+          <div class="stat-value">1,247</div>
+          <div class="stat-label">Survey Responses</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📈</div>
+          <div class="stat-value">87%</div>
+          <div class="stat-label">Campaign Performance</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-value">3,542</div>
+          <div class="stat-label">Active Users</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-value">94%</div>
+          <div class="stat-label">Data Accuracy</div>
+        </div>
+      </div>
+
+      <div class="dashboard-content">
+        <div class="dashboard-panel">
+          <div class="panel-header">
+            <h3 class="panel-title">Campaign Analytics</h3>
+            <button class="panel-action">View Details</button>
+          </div>
+          <div class="dashboard-iframe">
+            <div style="text-align: center;">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
+              <p>Your Power BI Dashboard</p>
+              <p style="font-size: 0.9rem; margin-top: 0.5rem;">Interactive analytics dashboard will be embedded here</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-panel">
+          <div class="panel-header">
+            <h3 class="panel-title">Recent Activity</h3>
+            <button class="panel-action">View All</button>
+          </div>
+          <ul class="recent-activity">
+            <li>
+              <div class="activity-icon">📊</div>
+              <div class="activity-content">
+                <h4>New survey data collected</h4>
+                <p>2 hours ago</p>
+              </div>
+            </li>
+            <li>
+              <div class="activity-icon">📈</div>
+              <div class="activity-content">
+                <h4>Campaign performance updated</h4>
+                <p>5 hours ago</p>
+              </div>
+            </li>
+            <li>
+              <div class="activity-icon">🎯</div>
+              <div class="activity-content">
+                <h4>Target audience analysis completed</h4>
+                <p>1 day ago</p>
+              </div>
+            </li>
+            <li>
+              <div class="activity-icon">📱</div>
+              <div class="activity-content">
+                <h4>Mobile polling results received</h4>
+                <p>2 days ago</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
   <div id="support" class="page-content">
     <section class="section">
       <h2>Support Center</h2>
@@ -652,13 +1127,112 @@
         <a href="#" onclick="showPage('services')">Services</a>
         <a href="#" onclick="showPage('about')">About</a>
         <a href="#" onclick="showPage('blog')">Blog</a>
-        <a href="#" onclick="showPage('support')">Support</a>
+        <a href="#" onclick="showPage('login')">Login</a>
       </div>
       <p>&copy; 2025 Orgalyx Analytics. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
+    // User management (in-memory storage for demo)
+    let users = [
+      {
+        id: 1,
+        name: 'John Doe',
+        email: 'john@acme.com',
+        company: 'Acme Corporation',
+        password: 'password123'
+      },
+      {
+        id: 2,
+        name: 'Jane Smith',
+        email: 'jane@bloomberg.com',
+        company: 'Bloomberg',
+        password: 'password123'
+      }
+    ];
+    
+    let currentUser = null;
+    
+    // Login form handler
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      
+      const user = users.find(u => u.email === email && u.password === password);
+      
+      if (user) {
+        currentUser = user;
+        updateDashboard();
+        showPage('dashboard');
+        updateNavigation();
+      } else {
+        alert('Invalid email or password. Try: john@acme.com / password123');
+      }
+    });
+    
+    // Signup form handler
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('signupName').value;
+      const email = document.getElementById('signupEmail').value;
+      const company = document.getElementById('signupCompany').value;
+      const password = document.getElementById('signupPassword').value;
+      
+      // Check if user already exists
+      if (users.find(u => u.email === email)) {
+        alert('User with this email already exists');
+        return;
+      }
+      
+      // Create new user
+      const newUser = {
+        id: users.length + 1,
+        name,
+        email,
+        company,
+        password
+      };
+      
+      users.push(newUser);
+      currentUser = newUser;
+      updateDashboard();
+      showPage('dashboard');
+      updateNavigation();
+    });
+    
+    // Update dashboard with user info
+    function updateDashboard() {
+      if (!currentUser) return;
+      
+      document.getElementById('userNameDisplay').textContent = currentUser.name.split(' ')[0];
+      document.getElementById('userFullName').textContent = currentUser.name;
+      document.getElementById('userCompany').textContent = currentUser.company;
+      document.getElementById('userAvatar').textContent = currentUser.name.charAt(0);
+    }
+    
+    // Logout function
+    function logout() {
+      currentUser = null;
+      showPage('home');
+      updateNavigation();
+    }
+    
+    // Update navigation based on login status
+    function updateNavigation() {
+      const loginBtn = document.querySelector('.login-btn');
+      if (currentUser) {
+        loginBtn.textContent = 'Dashboard';
+        loginBtn.onclick = () => showPage('dashboard');
+      } else {
+        loginBtn.textContent = 'Client Login';
+        loginBtn.onclick = () => showPage('login');
+      }
+    }
+    
     // Page navigation
     function showPage(pageId) {
       // Hide all pages
