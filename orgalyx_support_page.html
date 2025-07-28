@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Orgalyx Analytics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(26, 32, 44, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #4fd1c7;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #4fd1c7;
+        }
+
+        .client-login {
+            background: linear-gradient(135deg, #4fd1c7, #06b6d4);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(79, 209, 199, 0.3);
+        }
+
+        .client-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 209, 199, 0.4);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #4fd1c7, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 20px 20px 0 0;
+            margin-top: 2rem;
+            overflow: hidden;
+            box-shadow: 0 -10px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section {
+            padding: 4rem 0;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .support-card {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 5px solid #4fd1c7;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .support-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4fd1c7, #06b6d4);
+        }
+
+        .support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .support-card h2 {
+            color: #2d3748;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .support-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #4fd1c7, #06b6d4);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .support-card p {
+            color: #4a5568;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hours-section {
+            background: linear-gradient(135deg, #2d3748, #4a5568);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hours-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .hours-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hours-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #4fd1c7;
+            margin-bottom: 1rem;
+        }
+
+        .hours-time {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .hours-days {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .contact-section {
+            padding: 4rem 0;
+            background: #f7fafc;
+        }
+
+        .contact-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 3px solid #4fd1c7;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4fd1c7, #06b6d4);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .contact-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .contact-link {
+            color: #4fd1c7;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">Orgalyx</a>
+            <ul class="nav-links">
+                <li><a href="services_page.html">Services</a></li>
+                <li><a href="orgalyx_about_page.html">About</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="orgalyx_support_page.html">Support</a></li>
+                <li><a href="#" class="client-login">Client Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Support Center</h1>
+            <p>Professional support for your data analytics needs during business hours</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="content-section">
+            <div class="container">
+                <div class="support-grid">
+                    <div class="support-card">
+                        <h2>
+                            <div class="support-icon">🎧</div>
+                            Customer Support
+                        </h2>
+                        <p>Our dedicated customer support team is available during business hours to assist with account management, billing inquiries, platform navigation, and general questions. Whether you're a new user getting started or need help with advanced features, our knowledgeable support staff is here to ensure your success with Orgalyx Analytics.</p>
+                        <p><strong>Response Time:</strong> Within 2 hours during business hours</p>
+                    </div>
+
+                    <div class="support-card">
+                        <h2>
+                            <div class="support-icon">📊</div>
+                            Data Support
+                        </h2>
+                        <p>Our expert data analysts and engineers provide specialized technical support for data integration, custom reporting, dashboard configuration, and analytics troubleshooting. From complex data transformations to performance optimization, our data support team ensures your analytics infrastructure runs smoothly and delivers accurate insights.</p>
+                        <p><strong>Response Time:</strong> Within 4 hours during business hours</p>
+                    </div>
+
+                    <div class="support-card">
+                        <h2>
+                            <div class="support-icon">🔧</div>
+                            Technical Support
+                        </h2>
+                        <p>Our technical support specialists handle platform issues, API integration support, security configurations, and system maintenance. We provide comprehensive technical assistance to ensure your Orgalyx Analytics implementation meets your organization's specific requirements and maintains optimal performance.</p>
+                        <p><strong>Response Time:</strong> Within 3 hours during business hours</p>
+                    </div>
+
+                    <div class="support-card">
+                        <h2>
+                            <div class="support-icon">📚</div>
+                            Training & Resources
+                        </h2>
+                        <p>Access our comprehensive knowledge base, video tutorials, and documentation library. We also offer scheduled training sessions during business hours to help your team maximize the value of your Orgalyx Analytics investment through proper platform utilization and best practices.</p>
+                        <p><strong>Availability:</strong> Self-service 24/7, guided sessions during business hours</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="hours-section">
+            <div class="container">
+                <h2>Support Hours</h2>
+                <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem;">Our support team is available during standard business hours to provide timely assistance</p>
+                
+                <div class="hours-grid">
+                    <div class="hours-card">
+                        <div class="hours-title">Customer Support</div>
+                        <div class="hours-time">9:00 AM - 5:00 PM</div>
+                        <div class="hours-days">Monday - Friday (EST)</div>
+                    </div>
+                    <div class="hours-card">
+                        <div class="hours-title">Data Support</div>
+                        <div class="hours-time">9:00 AM - 5:00 PM</div>
+                        <div class="hours-days">Monday - Friday (EST)</div>
+                    </div>
+                    <div class="hours-card">
+                        <div class="hours-title">Technical Support</div>
+                        <div class="hours-time">9:00 AM - 5:00 PM</div>
+                        <div class="hours-days">Monday - Friday (EST)</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem; padding: 2rem; background: rgba(255, 255, 255, 0.1); border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <h3 style="color: #4fd1c7; margin-bottom: 1rem;">Emergency Support</h3>
+                    <p>For critical system outages affecting enterprise clients, emergency support is available outside business hours. Contact your dedicated account manager for emergency escalation procedures.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-title">Email Support</div>
+                        <div class="contact-info">
+                            General inquiries: <a href="mailto:support@orgalyx.com" class="contact-link">support@orgalyx.com</a><br>
+                            Data support: <a href="mailto:data@orgalyx.com" class="contact-link">data@orgalyx.com</a><br>
+                            Technical issues: <a href="mailto:tech@orgalyx.com" class="contact-link">tech@orgalyx.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-title">Phone Support</div>
+                        <div class="contact-info">
+                            Main support line:<br>
+                            <strong style="color: #2d3748; font-size: 1.2rem;">1-800-ORGALYX</strong><br>
+                            <span style="color: #718096;">(1-800-674-2599)</span><br>
+                            Available 9 AM - 5 PM EST
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">💬</div>
+                        <div class="contact-title">Live Chat</div>
+                        <div class="contact-info">
+                            Connect with our support team instantly through our client portal live chat feature.<br><br>
+                            <strong>Available:</strong> 9 AM - 5 PM EST<br>
+                            <strong>Average response:</strong> Under 3 minutes
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Need Immediate Assistance?</h2>
+                <p>Our support team is ready to help you get the most out of your Orgalyx Analytics platform</p>
+                <a href="#" class="btn">Contact Support Now</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
