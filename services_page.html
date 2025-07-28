@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Data Intelligence Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0 40px;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .service-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .features-list li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+            color: #666;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .benefits {
+            background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .benefits h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .benefits ul {
+            list-style: none;
+        }
+
+        .benefits li {
+            padding: 5px 0;
+            color: #555;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .benefits li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 50px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-card {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>Our Services</h1>
+            <p>Comprehensive data intelligence solutions designed to transform how campaigns and brands understand, engage, and succeed with their audiences.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">💬</div>
+                <h3>Online Surveys & Questionnaires</h3>
+                <p class="service-description">
+                    Transform audience feedback into actionable insights with our advanced survey platform. Built for the modern campaign and brand landscape.
+                </p>
+                <ul class="features-list">
+                    <li>Mobile-first responsive design for maximum participation</li>
+                    <li>Advanced branching logic and conditional questions</li>
+                    <li>Multi-language support for diverse audiences</li>
+                    <li>Real-time response tracking and analytics</li>
+                    <li>Custom branding and white-label options</li>
+                    <li>GDPR compliant data collection</li>
+                </ul>
+                <div class="benefits">
+                    <h4>Key Benefits:</h4>
+                    <ul>
+                        <li>Reduce survey abandonment by 40% with optimized UX</li>
+                        <li>Gather deeper insights with smart question flows</li>
+                        <li>Perfect for A/B testing campaign messages</li>
+                        <li>Instant data validation and quality checks</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>SMS & Email Polling</h3>
+                <p class="service-description">
+                    Capture real-time sentiment and feedback through integrated SMS and email polling systems that reach audiences where they are.
+                </p>
+                <ul class="features-list">
+                    <li>Rapid-fire polling for time-sensitive feedback</li>
+                    <li>Automated follow-up sequences</li>
+                    <li>Cross-platform integration (SMS ↔ Email)</li>
+                    <li>Personalized messaging based on demographics</li>
+                    <li>Instant sentiment analysis and scoring</li>
+                    <li>Opt-in/opt-out management and compliance</li>
+                </ul>
+                <div class="benefits">
+                    <h4>Key Benefits:</h4>
+                    <ul>
+                        <li>90%+ open rates with SMS polling</li>
+                        <li>Real-time pulse checks during critical moments</li>
+                        <li>Seamless integration with existing CRM systems</li>
+                        <li>Multilingual support for diverse communities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Social Media Listening</h3>
+                <p class="service-description">
+                    Monitor, analyze, and respond to your brand's digital conversation across all major social platforms with AI-powered insights.
+                </p>
+                <ul class="features-list">
+                    <li>Cross-platform monitoring (Twitter, Facebook, Instagram, TikTok)</li>
+                    <li>Advanced sentiment analysis with context understanding</li>
+                    <li>Trend identification and viral content tracking</li>
+                    <li>Competitor benchmarking and analysis</li>
+                    <li>Crisis detection and early warning systems</li>
+                    <li>Influencer identification and engagement metrics</li>
+                </ul>
+                <div class="benefits">
+                    <h4>Key Benefits:</h4>
+                    <ul>
+                        <li>24/7 brand reputation monitoring</li>
+                        <li>Identify emerging issues before they escalate</li>
+                        <li>Track campaign performance in real-time</li>
+                        <li>Discover authentic brand advocates and detractors</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎯</div>
+                <h3>Focus Groups & Interviews</h3>
+                <p class="service-description">
+                    Dive deep into audience motivations with expertly moderated sessions that uncover the 'why' behind the data.
+                </p>
+                <ul class="features-list">
+                    <li>Virtual and in-person session options</li>
+                    <li>Professional moderation by certified researchers</li>
+                    <li>HD video recording and transcription services</li>
+                    <li>Real-time client observation capabilities</li>
+                    <li>Specialized political and brand research expertise</li>
+                    <li>Rapid turnaround with actionable summaries</li>
+                </ul>
+                <div class="benefits">
+                    <h4>Key Benefits:</h4>
+                    <ul>
+                        <li>Uncover emotional drivers behind decisions</li>
+                        <li>Test creative concepts before full launch</li>
+                        <li>Identify messaging that truly resonates</li>
+                        <li>Perfect for sensitive topic exploration</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🧠</div>
+                <h3>Data Segmentation</h3>
+                <p class="service-description">
+                    Transform raw audience data into precise, actionable segments that drive personalized engagement and improved ROI.
+                </p>
+                <ul class="features-list">
+                    <li>Behavioral pattern analysis and clustering</li>
+                    <li>Psychographic and demographic profiling</li>
+                    <li>Predictive modeling for future behaviors</li>
+                    <li>Custom audience creation for ad platforms</li>
+                    <li>Lookalike audience development</li>
+                    <li>Dynamic segmentation that evolves with data</li>
+                </ul>
+                <div class="benefits">
+                    <h4>Key Benefits:</h4>
+                    <ul>
+                        <li>Increase engagement rates by 60%+ with targeted messaging</li>
+                        <li>Reduce ad spend waste through precise targeting</li>
+                        <li>Identify high-value audience segments</li>
+                        <li>Enable hyper-personalized campaign strategies</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📈</div>
+                <h3>KPI Dashboards</h3>
+                <p class="service-description">
+                    Make data-driven decisions with confidence using our interactive, real-time dashboards built specifically for decision makers.
+                </p>
+                <ul class="features-list">
+                    <li>Custom dashboard design tailored to your KPIs</li>
+                    <li>Real-time data updates and alerts</li>
+                    <li>Power BI integration and advanced visualizations</li>
+                    <li>Mobile-responsive design for on-the-go access</li>
+                    <li>Automated reporting and insights delivery</li>
+                    <li>Role-based access and permission controls</li>
+                </ul>
+                <div class="benefits">
+                    <h4>Key Benefits:</h4>
+                    <ul>
+                        <li>Reduce reporting time by 80% with automation</li>
+                        <li>Spot trends and opportunities instantly</li>
+                        <li>Make faster, more informed strategic decisions</li>
+                        <li>Share insights seamlessly across teams</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to Transform Your Data Strategy?</h2>
+            <p>Let's discuss how our comprehensive data intelligence solutions can drive your next campaign or brand initiative to success.</p>
+            <a href="#contact" class="cta-button">Start Your Project Today</a>
+        </div>
+    </div>
+</body>
+</html>
