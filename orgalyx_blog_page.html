@@ -186,6 +186,13 @@
       object-fit: cover;
       margin-bottom: 1.5rem;
       transition: transform 0.3s ease;
+      background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 1.2rem;
     }
 
     .post-image:hover {
@@ -371,6 +378,13 @@
       border-radius: 0.5rem;
       object-fit: cover;
       flex-shrink: 0;
+      background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 0.8rem;
     }
 
     .recent-post-content h4 {
@@ -593,7 +607,7 @@
       <div class="blog-posts">
         <!-- Blog Post 1 -->
         <article class="blog-post animate-on-scroll">
-          <img src="https://via.placeholder.com/800x250/0ea5e9/ffffff?text=Data+Analytics+Trends+2025" alt="Data Analytics Trends 2025" class="post-image">
+          <div class="post-image">Data Analytics Trends 2025</div>
           <div class="post-meta">
             <span class="post-category">Analytics</span>
             <div class="post-date">
@@ -618,7 +632,7 @@
 
         <!-- Blog Post 2 -->
         <article class="blog-post animate-on-scroll">
-          <img src="https://via.placeholder.com/800x250/22d3ee/ffffff?text=Digital+Polling+Best+Practices" alt="Digital Polling Best Practices" class="post-image">
+          <div class="post-image">Digital Polling Best Practices</div>
           <div class="post-meta">
             <span class="post-category">Polling</span>
             <div class="post-date">
@@ -643,7 +657,7 @@
 
         <!-- Blog Post 3 -->
         <article class="blog-post animate-on-scroll">
-          <img src="https://via.placeholder.com/800x250/38bdf8/ffffff?text=Dashboard+Design+Principles" alt="Dashboard Design Principles" class="post-image">
+          <div class="post-image">Dashboard Design Principles</div>
           <div class="post-meta">
             <span class="post-category">Design</span>
             <div class="post-date">
@@ -668,7 +682,7 @@
 
         <!-- Blog Post 4 -->
         <article class="blog-post animate-on-scroll">
-          <img src="https://via.placeholder.com/800x250/0ea5e9/ffffff?text=Campaign+Analytics+Guide" alt="Campaign Analytics Guide" class="post-image">
+          <div class="post-image">Campaign Analytics Guide</div>
           <div class="post-meta">
             <span class="post-category">Campaigns</span>
             <div class="post-date">
@@ -693,7 +707,7 @@
 
         <!-- Blog Post 5 -->
         <article class="blog-post animate-on-scroll">
-          <img src="https://via.placeholder.com/800x250/22d3ee/ffffff?text=AI+in+Market+Research" alt="AI in Market Research" class="post-image">
+          <div class="post-image">AI in Market Research</div>
           <div class="post-meta">
             <span class="post-category">AI & Technology</span>
             <div class="post-date">
@@ -757,21 +771,21 @@
         <h3 class="widget-title">Recent Posts</h3>
         <ul class="recent-posts-list">
           <li class="recent-post-item">
-            <img src="https://via.placeholder.com/80x80/0ea5e9/ffffff?text=BI" alt="Recent Post" class="recent-post-image">
+            <div class="recent-post-image">BI</div>
             <div class="recent-post-content">
               <h4><a href="#">5 Power BI Features Every Analyst Should Know</a></h4>
               <div class="recent-post-date">January 3, 2025</div>
             </div>
           </li>
           <li class="recent-post-item">
-            <img src="https://via.placeholder.com/80x80/22d3ee/ffffff?text=SMS" alt="Recent Post" class="recent-post-image">
+            <div class="recent-post-image">SMS</div>
             <div class="recent-post-content">
               <h4><a href="#">SMS Polling: Reaching Audiences Where They Are</a></h4>
               <div class="recent-post-date">December 28, 2024</div>
             </div>
           </li>
           <li class="recent-post-item">
-            <img src="https://via.placeholder.com/80x80/38bdf8/ffffff?text=Data" alt="Recent Post" class="recent-post-image">
+            <div class="recent-post-image">Data</div>
             <div class="recent-post-content">
               <h4><a href="#">Data Privacy in the Age of Analytics</a></h4>
               <div class="recent-post-date">December 25, 2024</div>
@@ -870,4 +884,14 @@
       e.preventDefault();
       const query = this.querySelector('.search-input').value;
       if (query.trim()) {
-        alert('Searching for: ' + query
+        alert('Searching for: ' + query);
+        // In a real application, you would implement actual search functionality here
+      }
+    });
+
+    // Add click handlers for interactive elements
+    document.addEventListener('DOMContentLoaded', function() {
+      // Categories click handlers
+      document.querySelectorAll('.categories-list a').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
