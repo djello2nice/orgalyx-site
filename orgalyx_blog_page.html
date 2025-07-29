@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog - Orgalyx Analytics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    body {
+      background: #f8fafc;
+      color: #1e293b;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* Navigation */
+    header {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #22d3ee;
+      text-decoration: none;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #22d3ee;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+    
+    .nav-links a:hover {
+      color: #22d3ee;
+      transform: translateY(-2px);
+    }
+    
+    .login-btn {
+      background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      color: white !important;
+    }
+    
+    .login-btn:hover {
+      background: linear-gradient(135deg, #0284c7, #06b6d4);
+      transform: translateY(-2px);
+    }
+    
+    .login-btn::after {
+      display: none;
+    }
+
+    /* Blog Header */
+    .blog-header {
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+      background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 50%, #22d3ee 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .blog-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="80" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+      animation: float 20s infinite linear;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-20px) rotate(360deg); }
+    }
+    
+    .blog-header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .blog-header p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Blog Container */
+    .blog-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 4rem;
+    }
+
+    /* Blog Content */
+    .blog-content {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 3rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(14, 165, 233, 0.1);
+    }
+
+    .blog-posts {
+      display: grid;
+      gap: 3rem;
+    }
+
+    .blog-post {
+      padding-bottom: 2rem;
+      border-bottom: 2px solid #f1f5f9;
+      transition: all 0.3s ease;
+    }
+
+    .blog-post:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .blog-post:hover {
+      transform: translateY(-5px);
+    }
+
+    .post-image {
+      width: 100%;
+      height: 250px;
+      border-radius: 1rem;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .post-image:hover {
+      transform: scale(1.02);
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    .post-category {
+      background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .post-date {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .post-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .post-title a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .post-title a:hover {
+      color: #0ea5e9;
+    }
+
+    .post-excerpt {
+      color: #475569;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #0ea5e9;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .read-more:hover {
+      gap: 0.8rem;
+      color: #0284c7;
+    }
+
+    /* Sidebar */
+    .blog-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .sidebar-widget {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(14, 165, 233, 0.1);
+    }
+
+    .widget-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 2px solid #f1f5f9;
+    }
+
+    /* Search Widget */
+    .search-form {
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 50px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: #f8fafc;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: #0ea5e9;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #64748b;
+      font-size: 1.1rem;
+    }
+
+    /* Categories Widget */
+    .categories-list {
+      list-style: none;
+    }
+
+    .categories-list li {
+      margin-bottom: 0.8rem;
+    }
+
+    .categories-list a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #475569;
+      text-decoration: none;
+      padding: 0.8rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .categories-list a:hover {
+      background: #f1f5f9;
+      color: #0ea5e9;
+      padding-left: 1.2rem;
+    }
+
+    .category-count {
+      background: #f1f5f9;
+      color: #64748b;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Recent Posts Widget */
+    .recent-posts-list {
+      list-style: none;
+    }
+
+    .recent-post-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .recent-post-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .recent-post-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 0.5rem;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .recent-post-content h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1e293b;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .recent-post-content h4 a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .recent-post-content h4 a:hover {
+      color: #0ea5e9;
+    }
+
+    .recent-post-date {
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    /* Tags Widget */
+    .tags-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .tag {
+      background: #f1f5f9;
+      color: #475569;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .tag:hover {
+      background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Newsletter Widget */
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .newsletter-input {
+      padding: 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .newsletter-input:focus {
+      outline: none;
+      border-color: #0ea5e9;
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+    }
+
+    .newsletter-btn {
+      background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .newsletter-btn:hover {
+      background: linear-gradient(135deg, #0284c7, #06b6d4);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(14, 165, 233, 0.3);
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 2px solid #f1f5f9;
+    }
+
+    .pagination a,
+    .pagination span {
+      padding: 0.8rem 1.2rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .pagination a {
+      background: #f8fafc;
+      color: #475569;
+    }
+
+    .pagination a:hover {
+      background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .pagination .current {
+      background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+      color: white;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: #0f172a;
+      color: #94a3b8;
+      margin-top: 4rem;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: #22d3ee;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .blog-header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .blog-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem 1rem;
+      }
+      
+      .blog-content {
+        padding: 2rem;
+      }
+      
+      .post-title {
+        font-size: 1.5rem;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    /* Animations */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+    
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">Orgalyx</a>
+      <div class="nav-links">
+        <a href="services_page.html" class="nav-link">Services</a>
+        <a href="orgalyx_about_page.html" class="nav-link">About</a>
+        <a href="#" class="nav-link active">Blog</a>
+        <a href="orgalyx_support_page.html" class="nav-link">Support</a>
+        <a href="#" class="nav-link login-btn">Client Login</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="blog-header">
+    <h1>Latest Insights</h1>
+    <p>Stay updated with the latest trends in data analytics, polling, and business intelligence</p>
+  </section>
+
+  <div class="blog-container">
+    <main class="blog-content">
+      <div class="blog-posts">
+        <!-- Blog Post 1 -->
+        <article class="blog-post animate-on-scroll">
+          <img src="https://via.placeholder.com/800x250/0ea5e9/ffffff?text=Data+Analytics+Trends+2025" alt="Data Analytics Trends 2025" class="post-image">
+          <div class="post-meta">
+            <span class="post-category">Analytics</span>
+            <div class="post-date">
+              <span>📅</span>
+              <span>January 15, 2025</span>
+            </div>
+            <div class="post-author">
+              <span>👤</span>
+              <span>Sarah Chen</span>
+            </div>
+          </div>
+          <h2 class="post-title">
+            <a href="#">Data Analytics Trends Shaping Business Intelligence in 2025</a>
+          </h2>
+          <p class="post-excerpt">
+            As we move deeper into 2025, the landscape of data analytics continues to evolve at an unprecedented pace. From AI-powered insights to real-time decision making, discover the key trends that are transforming how organizations approach data-driven strategies and what it means for your business.
+          </p>
+          <a href="#" class="read-more">
+            Read More →
+          </a>
+        </article>
+
+        <!-- Blog Post 2 -->
+        <article class="blog-post animate-on-scroll">
+          <img src="https://via.placeholder.com/800x250/22d3ee/ffffff?text=Digital+Polling+Best+Practices" alt="Digital Polling Best Practices" class="post-image">
+          <div class="post-meta">
+            <span class="post-category">Polling</span>
+            <div class="post-date">
+              <span>📅</span>
+              <span>January 12, 2025</span>
+            </div>
+            <div class="post-author">
+              <span>👤</span>
+              <span>Marcus Rodriguez</span>
+            </div>
+          </div>
+          <h2 class="post-title">
+            <a href="#">Best Practices for Digital Polling: Maximizing Response Rates and Data Quality</a>
+          </h2>
+          <p class="post-excerpt">
+            Digital polling has revolutionized how we gather public opinion and customer feedback. Learn the proven strategies for designing effective polls that generate meaningful insights, increase participation rates, and deliver actionable data for better decision-making.
+          </p>
+          <a href="#" class="read-more">
+            Read More →
+          </a>
+        </article>
+
+        <!-- Blog Post 3 -->
+        <article class="blog-post animate-on-scroll">
+          <img src="https://via.placeholder.com/800x250/38bdf8/ffffff?text=Dashboard+Design+Principles" alt="Dashboard Design Principles" class="post-image">
+          <div class="post-meta">
+            <span class="post-category">Design</span>
+            <div class="post-date">
+              <span>📅</span>
+              <span>January 10, 2025</span>
+            </div>
+            <div class="post-author">
+              <span>👤</span>
+              <span>Emma Thompson</span>
+            </div>
+          </div>
+          <h2 class="post-title">
+            <a href="#">Dashboard Design Principles: Creating Visualizations That Drive Action</a>
+          </h2>
+          <p class="post-excerpt">
+            A well-designed dashboard is more than just pretty charts—it's a strategic tool that transforms complex data into clear, actionable insights. Explore the fundamental principles of effective dashboard design and learn how to create visualizations that truly drive business decisions.
+          </p>
+          <a href="#" class="read-more">
+            Read More →
+          </a>
+        </article>
+
+        <!-- Blog Post 4 -->
+        <article class="blog-post animate-on-scroll">
+          <img src="https://via.placeholder.com/800x250/0ea5e9/ffffff?text=Campaign+Analytics+Guide" alt="Campaign Analytics Guide" class="post-image">
+          <div class="post-meta">
+            <span class="post-category">Campaigns</span>
+            <div class="post-date">
+              <span>📅</span>
+              <span>January 8, 2025</span>
+            </div>
+            <div class="post-author">
+              <span>👤</span>
+              <span>David Park</span>
+            </div>
+          </div>
+          <h2 class="post-title">
+            <a href="#">The Complete Guide to Campaign Analytics: From Setup to Optimization</a>
+          </h2>
+          <p class="post-excerpt">
+            Campaign analytics can make or break your marketing efforts. This comprehensive guide walks you through everything from initial setup and KPI selection to advanced optimization techniques that will help you maximize ROI and achieve your campaign objectives.
+          </p>
+          <a href="#" class="read-more">
+            Read More →
+          </a>
+        </article>
+
+        <!-- Blog Post 5 -->
+        <article class="blog-post animate-on-scroll">
+          <img src="https://via.placeholder.com/800x250/22d3ee/ffffff?text=AI+in+Market+Research" alt="AI in Market Research" class="post-image">
+          <div class="post-meta">
+            <span class="post-category">AI & Technology</span>
+            <div class="post-date">
+              <span>📅</span>
+              <span>January 5, 2025</span>
+            </div>
+            <div class="post-author">
+              <span>👤</span>
+              <span>Dr. Lisa Wang</span>
+            </div>
+          </div>
+          <h2 class="post-title">
+            <a href="#">How Artificial Intelligence is Revolutionizing Market Research</a>
+          </h2>
+          <p class="post-excerpt">
+            AI is transforming market research from a slow, manual process into a fast, intelligent system that can predict trends and uncover insights in real-time. Discover how machine learning algorithms are changing the way we understand consumer behavior and market dynamics.
+          </p>
+          <a href="#" class="read-more">
+            Read More →
+          </a>
+        </article>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <a href="#">← Previous</a>
+        <span class="current">1</span>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">Next →</a>
+      </div>
+    </main>
+
+    <aside class="blog-sidebar">
+      <!-- Search Widget -->
+      <div class="sidebar-widget animate-on-scroll">
+        <h3 class="widget-title">Search</h3>
+        <form class="search-form">
+          <div style="position: relative;">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Search articles...">
+          </div>
+        </form>
+      </div>
+
+      <!-- Categories Widget -->
+      <div class="sidebar-widget animate-on-scroll">
+        <h3 class="widget-title">Categories</h3>
+        <ul class="categories-list">
+          <li><a href="#">Analytics <span class="category-count">12</span></a></li>
+          <li><a href="#">Polling <span class="category-count">8</span></a></li>
+          <li><a href="#">Design <span class="category-count">6</span></a></li>
+          <li><a href="#">Campaigns <span class="category-count">10</span></a></li>
+          <li><a href="#">AI & Technology <span class="category-count">5</span></a></li>
+          <li><a href="#">Business Intelligence <span class="category-count">7</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Recent Posts Widget -->
+      <div class="sidebar-widget animate-on-scroll">
+        <h3 class="widget-title">Recent Posts</h3>
+        <ul class="recent-posts-list">
+          <li class="recent-post-item">
+            <img src="https://via.placeholder.com/80x80/0ea5e9/ffffff?text=BI" alt="Recent Post" class="recent-post-image">
+            <div class="recent-post-content">
+              <h4><a href="#">5 Power BI Features Every Analyst Should Know</a></h4>
+              <div class="recent-post-date">January 3, 2025</div>
+            </div>
+          </li>
+          <li class="recent-post-item">
+            <img src="https://via.placeholder.com/80x80/22d3ee/ffffff?text=SMS" alt="Recent Post" class="recent-post-image">
+            <div class="recent-post-content">
+              <h4><a href="#">SMS Polling: Reaching Audiences Where They Are</a></h4>
+              <div class="recent-post-date">December 28, 2024</div>
+            </div>
+          </li>
+          <li class="recent-post-item">
+            <img src="https://via.placeholder.com/80x80/38bdf8/ffffff?text=Data" alt="Recent Post" class="recent-post-image">
+            <div class="recent-post-content">
+              <h4><a href="#">Data Privacy in the Age of Analytics</a></h4>
+              <div class="recent-post-date">December 25, 2024</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Tags Widget -->
+      <div class="sidebar-widget animate-on-scroll">
+        <h3 class="widget-title">Popular Tags</h3>
+        <div class="tags-cloud">
+          <a href="#" class="tag">Data Analytics</a>
+          <a href="#" class="tag">Polling</a>
+          <a href="#" class="tag">Power BI</a>
+          <a href="#" class="tag">Campaigns</a>
+          <a href="#" class="tag">AI</a>
+          <a href="#" class="tag">Visualization</a>
+          <a href="#" class="tag">KPIs</a>
+          <a href="#" class="tag">Insights</a>
+        </div>
+      </div>
+
+      <!-- Newsletter Widget -->
+      <div class="sidebar-widget animate-on-scroll">
+        <h3 class="widget-title">Stay Updated</h3>
+        <p style="color: #64748b; margin-bottom: 1.5rem; font-size: 0.9rem;">
+          Get the latest insights and trends delivered directly to your inbox.
+        </p>
+        <form class="newsletter-form">
+          <input type="email" class="newsletter-input" placeholder="Your email address" required>
+          <button type="submit" class="newsletter-btn">Subscribe</button>
+        </form>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="services_page.html">Services</a>
+        <a href="orgalyx_about_page.html">About</a>
+        <a href="#">Blog</a>
+        <a href="orgalyx_support_page.html">Support</a>
+        <a href="#">Login</a>
+      </div>
+      <p>&copy; 2025 Orgalyx Analytics. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll animations
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('visible');
+        }
+      });
+    }
+    
+    // Header scroll effect
+    function handleScroll() {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(15, 23, 42, 0.98)';
+      } else {
+        header.style.background = 'rgba(15, 23, 42, 0.95)';
+      }
+    }
+    
+    // Event listeners
+    window.addEventListener('scroll', () => {
+      animateOnScroll();
+      handleScroll();
+    });
+    
+    // Initial animation check
+    window.addEventListener('load', () => {
+      animateOnScroll();
+    });
+
+    // Newsletter form submission
+    document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = this.querySelector('input[type="email"]').value;
+      alert('Thank you for subscribing! You\'ll receive our latest insights at: ' + email);
+      this.reset();
+    });
+
+    // Search form functionality
+    document.querySelector('.search-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const query = this.querySelector('.search-input').value;
+      if (query.trim()) {
+        alert('Searching for: ' + query
